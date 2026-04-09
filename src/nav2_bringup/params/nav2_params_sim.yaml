@@ -285,7 +285,6 @@ local_costmap:
       # robot_radius: 0.4
       # footprint: "[ [0.4, 0.2], [0.4, -0.2], [-0.4, -0.2], [-0.4, 0.2] ]" 
       # footprint: "[ [0.4, 0.4], [0.4, -0.4], [-0.4, -0.4], [-0.4, 0.4] ]" 
-      # footprint: "[ [1.5, 0.35], [1.5, -0.35], [-1.5, -0.35], [-1.5, 0.35] ]"
 
       plugins: ["voxel_layer", "inflation_layer"]
       inflation_layer:
