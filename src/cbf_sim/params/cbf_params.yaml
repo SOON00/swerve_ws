@@ -1,0 +1,15 @@
+cbf_lines:
+  Lc1:
+    a: -1.0
+    b:  0.0
+    c: -5.0
+  Lc2:
+    a:  0.0
+    b:  1.0
+    c: -4.0
+
+corner_points:
+  Pc2: [-3.0,  2.0]
+  Pc3: [-3.0, -4.0]
+
+turn_dir: 1

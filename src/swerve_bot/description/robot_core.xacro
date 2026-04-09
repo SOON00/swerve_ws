@@ -1,0 +1,355 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="inertial_macros.xacro"/>
+
+    <xacro:property name="pkg_path" value="$(find swerve_bot)"/>
+
+    <!-- MATERIAL -->
+
+    <material name="white">
+        <color rgba="1 1 1 1" />
+    </material>
+
+    <material name="orange">
+        <color rgba="1 0.3 0.1 1"/>
+    </material>
+
+    <material name="blue">
+        <color rgba="0.2 0.2 1 1"/>
+    </material>
+
+    <material name="gray">
+        <color rgba="0.6 0.6 0.6 1"/>
+    </material>
+
+    <material name="red">
+        <color rgba="1 0 0 1"/>
+    </material>
+
+    <!-- BASE_FOOTPRINT LINK -->
+
+    <link name="base_footprint">
+
+    </link>
+
+    <!-- BASE_LINK -->
+
+    <link name="base_link">
+
+    </link>
+
+    <joint name="base_link_joint" type="fixed">
+        <parent link="base_footprint"/>
+        <child link="base_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <!-- CHASSIS -->
+
+    <joint name="chassis_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis_link"/>
+        <origin xyz="-0.22 0 0"/>
+    </joint>
+
+    <link name="chassis_link">
+        <visual>
+            <origin xyz="0 -0.2 0"/>
+            <geometry>
+                <mesh filename="file://${pkg_path}/meshes/Body.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+            <material name='white'/>
+        </visual>
+        <collision>
+            <origin xyz="0 -0.2 0"/>
+            <geometry>
+                <mesh filename="file://${pkg_path}/meshes/Body.stl" scale="0.001 0.001 0.001"/>
+            </geometry>       
+        </collision>
+        <xacro:inertial_box mass="5.0" x="0.44" y="0.4" z='0.13'>
+            <origin xyz="0.22 0 0.065" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+    <gazebo reference="chassis_link">
+        <material>Gazebo/White</material>
+    </gazebo>
+
+    <!-- FRONT_LEFT_WHEEL -->
+
+    <joint name="front_left_wheel_joint" type="continuous">
+        <parent link="front_left_steer_link"/>
+        <child link="front_left_wheel_link"/>
+        <origin xyz="0 0 -0.0775" rpy="-${pi/2} 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="front_left_wheel_link">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.065" length="0.0628"/>
+            </geometry>
+            <material name='gray'/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.065" length="0.0628"/>
+            </geometry>            
+        </collision>
+        <xacro:inertial_cylinder mass="2.0" length="0.0628" radius="0.065">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="front_left_wheel_link">
+        <material>Gazebo/Gray</material>
+        <mu1 value="200.0"/>
+        <mu2 value="100.0"/>
+        <kp>450000.0</kp>
+        <kd>1.0</kd>
+    </gazebo>
+
+    <!-- FRONT_RIGHT_WHEEL -->
+
+    <joint name="front_right_wheel_joint" type="continuous">
+        <parent link="front_right_steer_link"/>
+        <child link="front_right_wheel_link"/>
+        <origin xyz="0 0 -0.0775" rpy="${pi/2} 0 0"/>
+        <axis xyz="0 0 -1"/>
+    </joint>
+
+    <link name="front_right_wheel_link">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.065" length="0.0628"/>
+            </geometry>
+            <material name='gray'/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.065" length="0.0628"/>
+            </geometry>            
+        </collision>
+        <xacro:inertial_cylinder mass="2.0" length="0.0628" radius="0.065">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="front_right_wheel_link">
+        <material>Gazebo/Gray</material>
+        <mu1 value="200.0"/>
+        <mu2 value="100.0"/>
+        <kp>450000.0</kp>
+        <kd>1.0</kd>
+    </gazebo>
+
+    <!-- REAR_LEFT_WHEEL -->
+
+    <joint name="rear_left_wheel_joint" type="continuous">
+        <parent link="rear_left_steer_link"/>
+        <child link="rear_left_wheel_link"/>
+        <origin xyz="0 0 -0.0775" rpy="-${pi/2} 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="rear_left_wheel_link">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.065" length="0.0628"/>
+            </geometry>
+            <material name='gray'/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.065" length="0.0628"/>
+            </geometry>            
+        </collision>
+        <xacro:inertial_cylinder mass="2.0" length="0.0628" radius="0.065">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="rear_left_wheel_link">
+        <material>Gazebo/Gray</material>
+        <mu1 value="200.0"/>
+        <mu2 value="100.0"/>
+        <kp>450000.0</kp>
+        <kd>1.0</kd>
+    </gazebo>
+
+    <!-- REAR_RIGHT_WHEEL -->
+
+    <joint name="rear_right_wheel_joint" type="continuous">
+        <parent link="rear_right_steer_link"/>
+        <child link="rear_right_wheel_link"/>
+        <origin xyz="0 0 -0.0775" rpy="${pi/2} 0 0"/>
+        <axis xyz="0 0 -1"/>
+    </joint>
+
+    <link name="rear_right_wheel_link">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.065" length="0.0628"/>
+            </geometry>
+            <material name='gray'/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.065" length="0.0628"/>
+            </geometry>            
+        </collision>
+        <xacro:inertial_cylinder mass="2.0" length="0.0628" radius="0.065">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="rear_right_wheel_link">
+        <material>Gazebo/Gray</material>
+        <mu1 value="200.0"/>
+        <mu2 value="100.0"/>
+        <kp>450000.0</kp>
+        <kd>1.0</kd>
+    </gazebo>
+
+    <!-- FRONT_LEFT_STEER -->
+
+    <joint name="front_left_steer_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="front_left_steer_link"/>
+        <origin xyz="0.171 0.151 -0.0075"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="front_left_steer_link">
+        <visual>
+            <origin xyz="-0.004 -0.004 0.004"/>
+            <geometry>
+                <mesh filename="file://${pkg_path}/meshes/Stepmotor_Shaft.dae" scale="0.001 0.001 0.001"/>
+            </geometry>
+            <material name='gray'/>
+        </visual>
+        <collision>
+            <origin xyz="-0.004 -0.004 0.004"/>
+            <geometry>
+                <mesh filename="file://${pkg_path}/meshes/Stepmotor_Shaft.dae" scale="0.001 0.001 0.001"/>
+            </geometry>            
+        </collision>
+        <xacro:inertial_cylinder mass="0.5" length="0.015" radius="0.02">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="front_left_steer_link">
+        <material>Gazebo/Gray</material>
+        <mu1 value="0.5"/>
+        <mu2 value="0.5"/>
+    </gazebo>
+
+    <!-- FRONT_RIGHT_STEER -->
+
+    <joint name="front_right_steer_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="front_right_steer_link"/>
+        <origin xyz="0.171 -0.148 -0.0075"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="front_right_steer_link">
+        <visual>
+            <origin xyz="-0.004 -0.002 0.004"/>
+            <geometry>
+                <mesh filename="file://${pkg_path}/meshes/Stepmotor_Shaft.dae" scale="0.001 0.001 0.001"/>
+            </geometry>
+            <material name='gray'/>
+        </visual>
+        <collision>
+            <origin xyz="-0.004 -0.002 0.004"/>
+            <geometry>
+                <mesh filename="file://${pkg_path}/meshes/Stepmotor_Shaft.dae" scale="0.001 0.001 0.001"/>
+            </geometry>            
+        </collision>
+        <xacro:inertial_cylinder mass="0.5" length="0.015" radius="0.02">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="front_right_steer_link">
+        <material>Gazebo/Gray</material>
+        <mu1 value="0.5"/>
+        <mu2 value="0.5"/>
+    </gazebo>
+
+    <!-- REAR_LEFT_STEER -->
+
+    <joint name="rear_left_steer_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="rear_left_steer_link"/>
+        <origin xyz="-0.168 0.152 -0.0075"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="rear_left_steer_link">
+        <visual>
+            <origin xyz="-0.002 -0.004 0.004"/>
+            <geometry>
+                <mesh filename="file://${pkg_path}/meshes/Stepmotor_Shaft.dae" scale="0.001 0.001 0.001"/>
+            </geometry>
+            <material name='gray'/>
+        </visual>
+        <collision>
+            <origin xyz="-0.002 -0.004 0.004"/>
+            <geometry>
+                <mesh filename="file://${pkg_path}/meshes/Stepmotor_Shaft.dae" scale="0.001 0.001 0.001"/>
+            </geometry>            
+        </collision>
+        <xacro:inertial_cylinder mass="0.5" length="0.015" radius="0.02">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="rear_left_steer_link">
+        <material>Gazebo/Gray</material>
+        <mu1 value="0.5"/>
+        <mu2 value="0.5"/>
+    </gazebo>
+
+    <!-- REAR_RIGHT_STEER -->
+
+    <joint name="rear_right_steer_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="rear_right_steer_link"/>
+        <origin xyz="-0.168 -0.147 -0.0075"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="rear_right_steer_link">
+        <visual>
+            <origin xyz="-0.002 -0.002 0.004"/>
+            <geometry>
+                <mesh filename="file://${pkg_path}/meshes/Stepmotor_Shaft.dae" scale="0.001 0.001 0.001"/>
+            </geometry>
+            <material name='gray'/>
+        </visual>
+        <collision>
+            <origin xyz="-0.002 -0.002 0.004"/>
+            <geometry>
+                <mesh filename="file://${pkg_path}/meshes/Stepmotor_Shaft.dae" scale="0.001 0.001 0.001"/>
+            </geometry>            
+        </collision>
+        <xacro:inertial_cylinder mass="0.5" length="0.015" radius="0.02">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="rear_right_steer_link">
+        <material>Gazebo/Gray</material>
+        <mu1 value="0.5"/>
+        <mu2 value="0.5"/>
+    </gazebo>
+
+</robot>

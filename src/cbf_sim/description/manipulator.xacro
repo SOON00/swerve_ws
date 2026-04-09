@@ -1,0 +1,269 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:property name="pkg_path" value="$(find cbf_sim)"/>
+
+    <!-- Agilex Piper Manipulator -->
+    <joint name="agilex_base_link_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="agilex_base_link"/>
+        <origin xyz="0.01 0 0.133"/>
+    </joint>
+
+     <link name="agilex_base_link">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="file://${pkg_path}/meshes/base_link.stl"/>
+            </geometry>
+            <material name='darkgray'/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="file://${pkg_path}/meshes/base_link.stl"/>
+            </geometry>       
+        </collision>
+    </link>
+
+    <gazebo reference="agilex_base_link">
+        <material>Gazebo/Gray</material>
+    </gazebo>
+
+    <joint name="agilex_link1_joint" type="fixed">
+        <parent link="agilex_base_link"/>
+        <child link="agilex_link1"/>
+        <origin xyz="0 0 0.12"/>
+        <!-- <axis xyz="0 0 1"/> -->
+    </joint>
+
+     <link name="agilex_link1">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="file://${pkg_path}/meshes/link1.stl"/>
+            </geometry>
+            <material name='darkgray'/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="file://${pkg_path}/meshes/link1.stl"/>
+            </geometry>       
+        </collision>
+    </link>
+
+    <gazebo reference="agilex_link1">
+        <material>Gazebo/Gray</material>
+    </gazebo>
+
+    <joint name="agilex_link2_joint" type="fixed">
+        <parent link="agilex_link1"/>
+        <child link="agilex_link2"/>
+        <origin xyz="0 0 0" rpy="1.57 -0.1 3.14"/>
+        <!-- <axis xyz="0 0 1"/> -->
+    </joint>
+
+     <link name="agilex_link2">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="file://${pkg_path}/meshes/link2.stl"/>
+            </geometry>
+            <material name='darkgray'/>   
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="file://${pkg_path}/meshes/link2.stl"/>
+            </geometry>  
+        </collision>
+    </link>
+
+    <gazebo reference="agilex_link2">
+        <material>Gazebo/Gray</material>
+    </gazebo>
+
+    <joint name="agilex_link3_joint" type="fixed">
+        <parent link="agilex_link2"/>
+        <child link="agilex_link3"/>
+        <origin xyz="0.285 0 0" rpy="0 0 -1.77"/>
+    </joint>
+
+     <link name="agilex_link3">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="file://${pkg_path}/meshes/link3.stl"/>
+            </geometry>
+            <material name='darkgray'/>  
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="file://${pkg_path}/meshes/link3.stl"/>
+            </geometry>   
+        </collision>
+    </link>
+
+    <gazebo reference="agilex_link3">
+        <material>Gazebo/Gray</material>
+    </gazebo>
+
+    <joint name="agilex_link4_joint" type="fixed">
+        <parent link="agilex_link3"/>
+        <child link="agilex_link4"/>
+        <origin xyz="-0.022 -0.25 0" rpy="1.57 0 0.4"/>
+    </joint>
+
+     <link name="agilex_link4">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="file://${pkg_path}/meshes/link4.stl"/>
+            </geometry>
+            <material name='darkgray'/> 
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="file://${pkg_path}/meshes/link4.stl"/>
+            </geometry>       
+        </collision>
+    </link>
+
+    <gazebo reference="agilex_link4">
+        <material>Gazebo/Gray</material>
+    </gazebo>
+
+    <joint name="agilex_link5_joint" type="fixed">
+        <parent link="agilex_link4"/>
+        <child link="agilex_link5"/>
+        <origin xyz="0 0 0" rpy="-1.57 0 0"/>
+    </joint>
+
+     <link name="agilex_link5">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="file://${pkg_path}/meshes/link5.stl"/>
+            </geometry>
+            <material name='darkgray'/> 
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="file://${pkg_path}/meshes/link5.stl"/>
+            </geometry>      
+        </collision>
+    </link>
+
+    <gazebo reference="agilex_link5">
+        <material>Gazebo/Gray</material>
+    </gazebo>
+
+    <joint name="agilex_link6_joint" type="fixed">
+        <parent link="agilex_link5"/>
+        <child link="agilex_link6"/>
+        <origin xyz="0 -0.09 0" rpy="1.57 0 0"/>
+    </joint>
+
+     <link name="agilex_link6">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="file://${pkg_path}/meshes/link6.stl"/>
+            </geometry>
+            <material name='darkgray'/> 
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="file://${pkg_path}/meshes/link6.stl"/>
+            </geometry>   
+        </collision>
+    </link>
+
+    <gazebo reference="agilex_link6">
+        <material>Gazebo/Gray</material>
+    </gazebo>
+
+    <joint name="agilex_gripper_base_joint" type="fixed">
+        <parent link="agilex_link6"/>
+        <child link="agilex_gripper_base_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+     <link name="agilex_gripper_base_link">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="file://${pkg_path}/meshes/gripper_base.stl"/>
+            </geometry>
+            <material name='darkgray'/> 
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="file://${pkg_path}/meshes/gripper_base.stl"/>
+            </geometry>  
+        </collision>
+    </link>
+
+    <gazebo reference="agilex_gripper_base_link">
+        <material>Gazebo/Gray</material>
+    </gazebo>
+
+    <joint name="agilex_link7_joint" type="fixed">
+        <parent link="agilex_gripper_base_link"/>
+        <child link="agilex_link7"/>
+        <origin xyz="0 -0.02 0.1" rpy="1.57 0 0"/>
+    </joint>
+
+     <link name="agilex_link7">
+        <visual>
+            <origin xyz="0 0.036 0"/>
+            <geometry>
+                <mesh filename="file://${pkg_path}/meshes/link7.stl"/>
+            </geometry>
+            <material name='darkgray'/>
+        </visual>
+        <collision>
+            <origin xyz="0 0.036 0"/>
+            <geometry>
+                <mesh filename="file://${pkg_path}/meshes/link7.stl"/>
+            </geometry>  
+        </collision>
+    </link>
+
+    <gazebo reference="agilex_link7">
+        <material>Gazebo/Gray</material>
+    </gazebo>
+
+    <joint name="agilex_link8_joint" type="fixed">
+        <parent link="agilex_gripper_base_link"/>
+        <child link="agilex_link8"/>
+        <origin xyz="0 0.02 0.1" rpy="1.57 0 3.14"/>
+    </joint>
+
+     <link name="agilex_link8">
+        <visual>
+            <origin xyz="0 0.036 0"/>
+            <geometry>
+                <mesh filename="file://${pkg_path}/meshes/link8.stl"/>
+            </geometry>
+            <material name='darkgray'/>  
+        </visual>
+        <collision>
+            <origin xyz="0 0.036 0"/>
+            <geometry>
+                <mesh filename="file://${pkg_path}/meshes/link8.stl"/>
+            </geometry>  
+        </collision>
+    </link>
+
+    <gazebo reference="agilex_link8">
+        <material>Gazebo/Gray</material>
+    </gazebo>
+
+</robot>

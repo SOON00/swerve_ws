@@ -1,0 +1,13 @@
+twist_mux:
+  ros__parameters:
+
+    topics:
+      mppi:
+        topic: /cmd_vel 
+        priority: 10
+        timeout: 0.5
+
+      cbf:
+        topic: /cmd_vel_cbf
+        priority: 100
+        timeout: 0.5

@@ -1,0 +1,20 @@
+goals:
+  - start: [2.0, 0.0, 0.0]
+    goal:  [3.5, -0.5, -1.57]
+    cbf_lines:
+      Lc1: {a: 0.0, b: 1.0, c: -0.5}
+      Lc2: {a: 1.0, b: 0.0, c: -4.0}
+    corner_points:
+      Pc2: [3.0, -0.5]
+      Pc3: [1.0, -0.5]
+    turn_dir: 1
+
+  - start: [3.5, -0.5, -1.57]
+    goal:  [2.0, -1.0, -3.14]
+    cbf_lines:
+      Lc1: {a: 1.0, b:  0.0, c: -4.0}
+      Lc2: {a: 0.0, b: -1.0, c: -1.5}
+    corner_points:
+      Pc2: [3.0, -0.5]
+      Pc3: [3.0,  1.5]
+    turn_dir: 1
